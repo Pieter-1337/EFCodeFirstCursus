@@ -47,49 +47,195 @@ namespace EFCodeFirstCursus
             //Hou er ook rekening mee dat steeds alle connections naar de database (Zowel in visual studio als in SQL management studio moeten gesloten zijn om dit te laten werken)
 
 
+            //System.Data.Entity.Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFCFContext>());
+
+
+            //using (var context = new EFCFContext())
+            //{
+            //var Belgie = new Land
+            //{
+            //    Naam = "Belgie",
+            //    LandCode = "BE"
+            //};
+
+            //context.Landen.Add(Belgie);
+
+            //var Pieter = new Instructeur
+            //{
+            //    Voornaam = "Pieter",
+            //    Familienaam = "Bracke",
+            //    Wedde = 3000,
+            //    InDienst = new DateTime(2018, 01, 01),
+            //    HeeftRijbewijs = true,
+            //    Adres = new Adres
+            //    {
+            //        Straat = "Tolhuislaan",
+            //        HuisNr =" 96C",
+            //        PostCode = "9000",
+            //        Gemeente = "Gent"
+            //    }
+            //};
+
+            //context.Instructeurs.Add(Pieter);
+            //context.SaveChanges();
+
+            //var query = from instructeur in context.Instructeurs orderby instructeur.InstructeurNr select instructeur;
+
+            //foreach (var instructeur in query)
+            //{
+            //    Console.WriteLine($"InstructeurNr:{instructeur.InstructeurNr} \nNaam: {instructeur.Voornaam} {instructeur.Familienaam}");
+            //    Console.WriteLine($"Adres: ");
+            //    Console.WriteLine($"\t{instructeur.Adres.Straat}{instructeur.Adres.HuisNr} \n\t{instructeur.Adres.PostCode} \n\t{instructeur.Adres.Gemeente}");
+            //    Console.WriteLine("--------------------------------------------------------------------------------------");
+            //}
+
+            //Console.WriteLine("");
+            //}
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////:
+            //3.0
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //Table per hierarchy Inheritance
+
+            //System.Data.Entity.Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFCFContext>());
+
+            //using(var context = new EFCFContext())
+            //{
+
+
+            //context.TPHCursussen.Add(new TPHKlassikaleCursus
+            //{
+            //    Naam = "Frans in 24 uur",
+            //    Van = DateTime.Today,
+            //    Tot = DateTime.Today
+            //});
+
+            //context.TPHCursussen.Add(new TPHZelfstudieCursus
+            //{
+            //    Naam = "Engels in 24 uur",
+            //    AantalDagen = 1
+            //});
+
+            //context.SaveChanges();
+
+            //Console.WriteLine("Klassikale cursussen: ");
+
+            //var query = from cursus in context.TPHCursussen where cursus is TPHKlassikaleCursus select cursus;
+
+            //foreach(var cursus in query)
+            //{
+            //    Console.WriteLine($"{cursus.Id} : {cursus.Naam}");
+            //}
+
+            //Console.WriteLine("");
+            //Console.WriteLine("");
+
+
+            //Console.WriteLine("Zelfstudie cursussen: ");
+
+            //query = from cursus in context.TPHCursussen where cursus is TPHZelfstudieCursus select cursus;
+
+            //foreach (var cursus in query)
+            //{
+            //    Console.WriteLine($"{cursus.Id} : {cursus.Naam}");
+            //}
+            //}
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////:
+            //4.0
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //Table per Type Inheritance
+
+            //System.Data.Entity.Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFCFContext>());
+
+            //using(var context = new EFCFContext())
+            //{
+            //    context.TPTCursussen.Add(new TPTKlassikaleCursus
+            //    {
+            //        Naam = "Frans in 24 uur",
+            //        Van = DateTime.Today,
+            //        Tot = DateTime.Today
+            //    });
+
+            //    context.TPTCursussen.Add(new TPTZelfstudieCursus
+            //    {
+            //        Naam = "Engels in 24 uur",
+            //        AantalDagen = 1
+            //    });
+
+            //    context.SaveChanges();
+
+            //    Console.WriteLine("Klassikale cursussen: ");
+
+            //    var query = from cursus in context.TPTCursussen where cursus is TPTKlassikaleCursus select cursus;
+
+            //    foreach (var cursus in query)
+            //    {
+            //        Console.WriteLine($"{cursus.Id} : {cursus.Naam}");
+            //    }
+
+            //    Console.WriteLine("");
+            //    Console.WriteLine("");
+
+
+            //    Console.WriteLine("Zelfstudie cursussen: ");
+
+            //    query = from cursus in context.TPTCursussen where cursus is TPTZelfstudieCursus select cursus;
+
+            //    foreach (var cursus in query)
+            //    {
+            //        Console.WriteLine($"{cursus.Id} : {cursus.Naam}");
+            //    }
+            //}
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////:
+            //4.0
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //Table per Concrete Inheritance
+
             System.Data.Entity.Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFCFContext>());
 
-
-            using (var context = new EFCFContext())
+            using(var context = new EFCFContext())
             {
-                //var Belgie = new Land
-                //{
-                //    Naam = "Belgie",
-                //    LandCode = "BE"
-                //};
-
-                //context.Landen.Add(Belgie);
-
-                //var Pieter = new Instructeur
-                //{
-                //    Voornaam = "Pieter",
-                //    Familienaam = "Bracke",
-                //    Wedde = 3000,
-                //    InDienst = new DateTime(2018, 01, 01),
-                //    HeeftRijbewijs = true,
-                //    Adres = new Adres
-                //    {
-                //        Straat = "Tolhuislaan",
-                //        HuisNr =" 96C",
-                //        PostCode = "9000",
-                //        Gemeente = "Gent"
-                //    }
-                //};
-
-                //context.Instructeurs.Add(Pieter);
-                //context.SaveChanges();
-
-                var query = from instructeur in context.Instructeurs orderby instructeur.InstructeurNr select instructeur;
-
-                foreach (var instructeur in query)
+                context.TPCCursussen.Add(new TPCKlassikaleCursus
                 {
-                    Console.WriteLine($"InstructeurNr:{instructeur.InstructeurNr} \nNaam: {instructeur.Voornaam} {instructeur.Familienaam}");
-                    Console.WriteLine($"Adres: ");
-                    Console.WriteLine($"\t{instructeur.Adres.Straat}{instructeur.Adres.HuisNr} \n\t{instructeur.Adres.PostCode} \n\t{instructeur.Adres.Gemeente}");
-                    Console.WriteLine("--------------------------------------------------------------------------------------");
+                    Naam = "Frans in 24 uur",
+                    Van = DateTime.Today,
+                    Tot = DateTime.Today
+                });
+
+                context.TPCCursussen.Add(new TPCZelfstudieCursus
+                {
+                    Naam = "Engels in 24 uur",
+                    AantalDagen = 1
+                });
+
+                context.SaveChanges();
+
+                Console.WriteLine("Klassikale cursussen: ");
+
+                var query = from cursus in context.TPCCursussen where cursus is TPCKlassikaleCursus select cursus;
+
+                foreach (var cursus in query)
+                {
+                    Console.WriteLine($"{cursus.Id} : {cursus.Naam}");
                 }
 
                 Console.WriteLine("");
+                Console.WriteLine("");
+
+
+                Console.WriteLine("Zelfstudie cursussen: ");
+
+                query = from cursus in context.TPCCursussen where cursus is TPCZelfstudieCursus select cursus;
+
+                foreach (var cursus in query)
+                {
+                    Console.WriteLine($"{cursus.Id} : {cursus.Naam}");
+                }
             }
 
         }
