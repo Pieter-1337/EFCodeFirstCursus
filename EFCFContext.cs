@@ -22,6 +22,12 @@ namespace EFCodeFirstCursus
         //Table per concrete
         public DbSet<TPCCursus> TPCCursussen { get; set; }
 
+        public DbSet<ASSInstructeur> ASSInstructeurs { get; set; }
+        public DbSet<ASSCampus> ASSCampussen { get; set; }
+        public DbSet<ASSVerantwoordelijkheid> ASSVerantwoordelijkheden { get; set; }
+
+        public DbSet<Cursist> Cursisten { get; set; }
+
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,6 +42,24 @@ namespace EFCodeFirstCursus
             modelBuilder.Entity<TPCKlassikaleCursus>().Map(m => m.MapInheritedProperties());
 
             modelBuilder.Entity<TPCZelfstudieCursus>().Map(m => m.MapInheritedProperties());
+
+
+            ///////////////////:
+           //INSTELLEN VAN DE NAAM VAN DE TUSSENTABEL EN DE KOLOMNAMEN VAN DE TUSSENTABEL
+
+            //Je vermeldt bij Entity tussen<en> de naam van één van beide classes.
+            //Je vermeldt bij HasMany de property in de class bij die verwijst naar de tweede class. 
+            //Je vermeldt bij WithMany de property in de tweede class die verwijst naar de class bij .Entity 
+            //Je vermeldt bij ToTable de naam van de tussentabel.
+            //Je vermeldt bij MapLeftKey de kolomnaam die hoort bij de tweede class in de tussentabel. 
+            //Je vermeldt bij MapRightKey de kolomnaam die hoort bij de class bij .Entity in de tussentabel.
+            modelBuilder.Entity<ASSInstructeur>()
+                            .HasMany(i => i.Verantwoordelijkheden)
+                            .WithMany(v => v.Instructeurs)
+                            .Map(c => c.ToTable("InstructeursVerantwoordelijkheden")
+                            .MapLeftKey("VerantwoordelijkheidID")
+                            .MapRightKey("InstructeurNr"));
+                            
         }
     }
 }
